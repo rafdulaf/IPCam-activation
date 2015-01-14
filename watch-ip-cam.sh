@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# IPCamera activate script v1.0.0
+# IPCamera activate script v1.0.1
 
 # CUSTOMIZE THIS PART
 
@@ -49,8 +49,8 @@ if [ $CAMREACHABLE != "100" ]; then
                                 echo "State changed to off"
                                 STATE="OFF"
                                 eval "$URL_SETMOTION_OFF"
-                                eval "$URL_MOVETO_OFF"
                                 eval "$URL_SETSOUND_OFF"
+                                eval "$URL_MOVETO_OFF"
                         fi
                         FOUND=true
                         break
@@ -63,8 +63,8 @@ if [ $CAMREACHABLE != "100" ]; then
                 if [[ -z "$STATE" ]] || [ $STATE == "OFF"  ]; then
                         echo "State changed to on"
                         STATE="ON"
-                        eval "$URL_SETMOTION_ON"
                         eval "$URL_MOVETO_ON"
+                        eval "$URL_SETMOTION_ON"
                         eval "$URL_SETSOUND_ON"
                 fi
         fi
