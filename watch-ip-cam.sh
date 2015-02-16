@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# IPCamera activate script v1.0.1
+# IPCamera activate script v1.1.0
 
 # CUSTOMIZE THIS PART
 
@@ -13,7 +13,7 @@ CAMUSR="USERNAME"
 # The IPCamera password
 CAMPWD="PASSWORD"
 
-# END OF CUSTOMIZABLE PAR
+# END OF CUSTOMIZABLE PART
 
 URL_END="\" -O /dev/null"
 
@@ -30,6 +30,10 @@ URL_SETSOUND_ON="$URL_SETSOUND&SoundDetectionEnable=1$URL_END"
 URL_MOVETO="$URL/pantiltcontrol.cgi"
 URL_MOVETO_OFF="$URL_MOVETO?PanTiltPresetPositionMove=2$URL_END"
 URL_MOVETO_ON="$URL_MOVETO?PanTiltPresetPositionMove=0$URL_END"
+
+URL_SETIR="$URL/setDayNightMode?ReplySuccessPage=night.htm&ReplyErrorPage=errrnght.htm&ConfigDayNightMode=Save"
+URL_SETIR_OFF="$URL_SETIR&DayNightMode=2$URL_END"
+URL_SETIR_AUTO="$URL_SETIR&DayNightMode=0$URL_END"
 
 STATEFILE=/tmp/state
 CAMREACHABLE=`ping -c 4 $CAMIP | grep "packet loss" | sed "s/^.* \([0-9]\+\)% packet loss.*$/\1/"`
@@ -51,6 +55,7 @@ if [ $CAMREACHABLE != "100" ]; then
                                 eval "$URL_SETMOTION_OFF"
                                 eval "$URL_SETSOUND_OFF"
                                 eval "$URL_MOVETO_OFF"
+                                eval "$URL_SETIR_OFF"
                         fi
                         FOUND=true
                         break
@@ -66,6 +71,7 @@ if [ $CAMREACHABLE != "100" ]; then
                         eval "$URL_MOVETO_ON"
                         eval "$URL_SETMOTION_ON"
                         eval "$URL_SETSOUND_ON"
+                        eval "$URL_SETIR_AUTO"
                 fi
         fi
 
