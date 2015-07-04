@@ -51,12 +51,12 @@ if [ $CAMREACHABLE != "100" ]; then
                         echo "FOUND "$i
                         if [[ -z "$STATE" ]] || [ $STATE == "ON" ]; then
                                 echo "State changed to off"
-                                STATE="OFF"
                                 eval "$URL_SETMOTION_OFF"
                                 eval "$URL_SETSOUND_OFF"
                                 eval "$URL_MOVETO_OFF"
                                 eval "$URL_SETIR_OFF"
                         fi
+                        STATE="OFF"
                         FOUND=true
                         break
                 fi
@@ -65,7 +65,17 @@ if [ $CAMREACHABLE != "100" ]; then
         if [ $FOUND == false ]; then
                 echo "NOT FOUND ANY"
 
-                if [[ -z "$STATE" ]] || [ $STATE == "OFF"  ]; then
+                if [ $STATE == "OFF" ]; then
+                        STATE="ON5"
+                elif [ $STATE == "ON5" ]; then
+                        STATE="ON4"
+                elif [ $STATE == "ON4" ]; then
+                        STATE="ON3"
+                elif [ $STATE == "ON3" ]; then
+                        STATE="ON2"
+                elif [ $STATE == "ON2" ]; then
+                        STATE="ON1"
+                elif [[ -z "$STATE" ]] || [ $STATE == "ON1"  ]; then
                         echo "State changed to on"
                         STATE="ON"
                         eval "$URL_MOVETO_ON"
