@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# IPCamera activate script v1.1.0
+# IPCamera activate script v1.2.0
 
 # CUSTOMIZE THIS PART
 
