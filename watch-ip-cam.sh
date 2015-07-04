@@ -4,9 +4,9 @@
 
 # CUSTOMIZE THIS PART
 
-# The smartphones IPs (has to be fixed ips)
+# The smartphones IPs (has to be static ips)
 IPS=( "192.168.1.X" "192.168.1.Y" )
-# The IPCamera IP (has to be fixed)
+# The IPCamera IP (has to be static)
 CAMIP="192.168.1.Z"
 # The IPCamera username
 CAMUSR="USERNAME"
